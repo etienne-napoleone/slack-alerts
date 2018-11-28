@@ -1,0 +1,16 @@
+language: python
+python:
+  - "3.5"
+  - "3.6"
+  - "3.7-dev"
+
+before_install:
+  - pip install poetry
+install:
+  - poetry install
+
+script:
+  - flake8 .
+  - coverage run --source slack_alerts -m pytest -v
+  - coverage report
+  - coveralls
