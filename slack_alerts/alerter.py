@@ -6,8 +6,8 @@ class Alerter:
     - channel
     """
 
-    def __init__(self, url: str, channel: str,
-                 username: str = __name__, icon_emoji: str = None):
+    def __init__(self, url: str, channel: str, username: str = __name__,
+                 icon_emoji: str = None) -> None:
         self.url = url
         self.channel = channel
         self.username = username
