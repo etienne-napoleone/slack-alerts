@@ -6,6 +6,7 @@ authors = ["etienne-napoleone <etienne@tomochain.com>"]
 
 [tool.poetry.dependencies]
 python = "*"
+requests = "^2.20"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
