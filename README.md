@@ -21,7 +21,7 @@
 ```
 import slack_alerts
 
-alerter = slack_alerts.Alerter(url='https://your-slack.webhook/url')
+alerter = slack_alerts.Alerter('https://your-slack.webhook/url')
 alerter.critical('something bad happened!!')
 ```
 
