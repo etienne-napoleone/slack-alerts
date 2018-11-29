@@ -13,6 +13,11 @@ RAW_MESSAGE = {'text': 'testing: v{}'.format(__version__)}
 RAW_MESSAGE_INVALID = {'test': 'testing: v{}'.format(__version__)}
 
 
+def test_repr():
+    a = sa.Alerter(URL)
+    assert a.__repr__() == 'Alerter for channel (default)'
+
+
 def test_send_with_good_url():
     a = sa.Alerter(URL)
     a._send(RAW_MESSAGE)
