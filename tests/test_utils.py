@@ -11,6 +11,6 @@ def test_merge_dicts_with_dicts():
     assert len(utils.merge_dicts(PAYLOAD_ONE, PAYLOAD_TWO)) == 2
 
 
-def test_merge_dicts_raise_with_other_type():
+def test_merge_dicts_with_non_dicts():
     with pytest.raises(InvalidPayload, match='Could not merge dictionaries'):
         utils.merge_dicts(PAYLOAD_ONE, 2)
