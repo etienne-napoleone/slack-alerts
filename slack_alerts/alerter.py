@@ -40,11 +40,10 @@ class Alerter:
         """Preformated ok message."""
         pass
 
-    def _send(self, data: Dict[str, str]) -> None:
+    def _send(self, payload: Dict[str, str]) -> None:
         """Send the request to the Slack webhook."""
         try:
-            r = requests.post(self.url, data=data, timeout=self.timeout)
-            r.raise_for_status()
+            r = requests.post(self.url, json=payload, timeout=self.timeout)
         except (requests.exceptions.RequestException,
                 requests.exceptions.ConnectionError,
                 requests.exceptions.HTTPError,
@@ -53,5 +52,8 @@ class Alerter:
                 requests.exceptions.ConnectTimeout,
                 requests.exceptions.ReadTimeout,
                 requests.exceptions.Timeout) as e:
-            raise CouldNotSendAlert('Alert was not sent due to {}'
+            raise CouldNotSendAlert('Alert was not sent, request error: {}'
                                     .format(e))
+        if not r.text == 'ok':
+            raise CouldNotSendAlert('Alert was not sent, received: {}'
+                                    .format(r.text))
