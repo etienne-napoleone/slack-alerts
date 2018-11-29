@@ -1,19 +1,17 @@
-import pytest
+import os
+
+# import pytest
 
 import slack_alerts as sa
 from slack_alerts import __version__
+
+URL = os.getenv('SLACK_WEBHOOK_URL', 'https://slack.com/url')
+CHANNEL = os.getenv('SLACK_WEBHOOK_CHANNEL', 'alert')
 
 
 def test_version():
     assert __version__ == '0.1.0'
 
 
-def test_get_alerter_ok():
-    sa.alerter('https://slack.com/kek', '#test', name='test')
-    assert sa.get_alerter('test')
-    del sa._alerters['test']
-
-
-def test_get_alerter_nok():
-    with pytest.raises(sa.NoSuchAlerter):
-        sa.get_alerter('test')
+def test_instanciate_alerter():
+    assert isinstance(sa.Alerter(URL, CHANNEL), sa.Alerter)
