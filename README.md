@@ -1,7 +1,7 @@
 <h5 align='center'>SLACK-ALERTS</h5>
 <h6 align='center'>
   SIMPLE SLACK ALERTING PYTHON LIBRARY<br/>
-  ──────────────────────────────
+  ────
 </h6>
 <div align='center'>
   <a href='https://travis-ci.org/etienne-napoleone/slack-alerts'>
