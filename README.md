@@ -48,8 +48,6 @@ pip install slack_alerts
 pipenv install slack_alerts
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
 ### Run tests
 
 Run pytest for unit tests
