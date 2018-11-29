@@ -52,8 +52,8 @@ class Alerter:
                 requests.exceptions.ConnectTimeout,
                 requests.exceptions.ReadTimeout,
                 requests.exceptions.Timeout) as e:
-            raise CouldNotSendAlert('Alert was not sent, request error: {}'
+            raise CouldNotSendAlert('Request errored: {}'
                                     .format(e))
         if not r.text == 'ok':
-            raise CouldNotSendAlert('Alert was not sent, received: {}'
+            raise CouldNotSendAlert('Invalid response: {}'
                                     .format(r.text))

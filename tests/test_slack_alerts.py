@@ -1,11 +1,7 @@
-import os
-
-# import pytest
-
 import slack_alerts as sa
 from slack_alerts import __version__
 
-URL = os.getenv('SLACK_WEBHOOK_URL', 'https://slack.com/url')
+URL = 'test'
 
 
 def test_version():
