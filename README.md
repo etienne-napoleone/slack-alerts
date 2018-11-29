@@ -52,9 +52,12 @@ End with an example of getting some data out of the system or using it for a lit
 
 ### Run tests
 
-Run pytest for unittests
+Run pytest for unit tests
 
 ```bash
+# you need a valid slack webhook url as there is no api mocking
+export SLACK_WEBHOOK_URL='https://...'
+
 poetry run coverage run --source slack_alerts -m pytest -v
 poetry run coverage report
 ```
