@@ -5,7 +5,10 @@
 </h6>
 <div align='center'>
   <a href='https://travis-ci.org/etienne-napoleone/slack-alerts'>
-    <img src='https://travis-ci.org/etienne-napoleone/slack-alerts.svg?branch=develop'/>
+    <img src='https://travis-ci.org/etienne-napoleone/slack-alerts.svg?branch=develop' alt='Build Status' />
+  </a>
+  <a href='https://coveralls.io/github/etienne-napoleone/slack-alerts?branch=develop'>
+    <img src='https://coveralls.io/repos/github/etienne-napoleone/slack-alerts/badge.svg?branch=develop' alt='Coverage Status' />
   </a>
 </div>
 
@@ -52,13 +55,14 @@ End with an example of getting some data out of the system or using it for a lit
 Run pytest for unittests
 
 ```bash
-python -m pytest
+poetry run coverage run --source slack_alerts -m pytest -v
+poetry run coverage report
 ```
 
 Run flake8 for code style
 
 ```bash
-flake8 .
+poetry run flake8 .
 ```
 
 ### Built With
