@@ -3,6 +3,7 @@ from typing import Dict
 import requests
 
 from slack_alerts.exceptions import CouldNotSendAlert
+from slack_alerts.exceptions import InvalidPayload
 from slack_alerts.utils import merge_dicts
 
 
@@ -47,6 +48,8 @@ class Alerter:
         try:
             r = requests.post(self.url, json=merge_dicts(*args),
                               timeout=self.timeout)
+        except InvalidPayload:
+            raise InvalidPayload('One of the args is not a valid dictionary')
         except (requests.exceptions.RequestException,
                 requests.exceptions.ConnectionError,
                 requests.exceptions.HTTPError,
