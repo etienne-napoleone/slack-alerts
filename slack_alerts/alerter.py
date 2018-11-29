@@ -3,6 +3,7 @@ from typing import Dict
 import requests
 
 from slack_alerts.exceptions import CouldNotSendAlert
+from slack_alerts.utils import merge_dicts
 
 
 class Alerter:
@@ -41,10 +42,11 @@ class Alerter:
         """Preformated ok message."""
         pass
 
-    def _send(self, payload: Dict[str, str]) -> None:
+    def _send(self, *args: Dict[str, str]) -> None:
         """Send the request to the Slack webhook."""
         try:
-            r = requests.post(self.url, json=payload, timeout=self.timeout)
+            r = requests.post(self.url, json=merge_dicts(*args),
+                              timeout=self.timeout)
         except (requests.exceptions.RequestException,
                 requests.exceptions.ConnectionError,
                 requests.exceptions.HTTPError,
