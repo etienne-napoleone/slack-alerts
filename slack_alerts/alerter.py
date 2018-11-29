@@ -10,10 +10,10 @@ class Alerter:
 
     This class holds the repetitive configuration.
     This way you can instanciate it once and not need to always pass
-    the url and channel.
+    the url, channel and other specific configurations.
     """
 
-    def __init__(self, url: str, channel: str, username: str = __name__,
+    def __init__(self, url: str, channel: str = None, username: str = None,
                  icon_emoji: str = None, timeout: int = 1) -> None:
         self.url = url
         self.channel = channel
