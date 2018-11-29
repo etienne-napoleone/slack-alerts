@@ -22,7 +22,8 @@ class Alerter:
         self.timeout = timeout
 
     def __repr__(self):
-        return 'Alerter for channel {}'.format(self.channel)
+        return ('Alerter for channel {}'
+                .format(self.channel if self.channel else '(default)'))
 
     def critical(self, message: str, title: str = None):
         """Preformated critical message."""
