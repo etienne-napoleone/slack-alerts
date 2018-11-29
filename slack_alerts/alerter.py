@@ -21,6 +21,9 @@ class Alerter:
         self.icon_emoji = icon_emoji
         self.timeout = timeout
 
+    def __repr__(self):
+        return 'Alerter for channel {} on '.format(self.channel)
+
     def critical(self, message: str, title: str = None):
         """Preformated critical message."""
         pass
