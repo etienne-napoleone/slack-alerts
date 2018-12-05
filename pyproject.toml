@@ -1,11 +1,14 @@
 [tool.poetry]
 name = "slack-alerts"
-version = "0.1.0"
-description = ""
+version = "1.0.0-beta"
+description = "Simple Slack alerting python library"
 authors = ["etienne-napoleone <etienne@tomochain.com>"]
 
 [tool.poetry.dependencies]
-python = "*"
+python = "^3.5"
+requests = "^2.20"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
+flake8 = "^3.6"
+coveralls = "^1.5"
