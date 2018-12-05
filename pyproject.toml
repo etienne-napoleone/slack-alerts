@@ -2,7 +2,15 @@
 name = "slack-alerts"
 version = "1.0.0-beta"
 description = "Simple Slack alerting python library"
-authors = ["etienne-napoleone <etienne@tomochain.com>"]
+readme = "README.md"
+license = "GPL-3.0+"
+homepage = "https://github.com/etienne-napoleone/slack-alerts"
+repository = "https://github.com/etienne-napoleone/slack-alerts"
+documentation = "https://github.com/etienne-napoleone/slack-alerts/blob/develop/README.md"
+keywords = ["slack", "webhook", "alerts", "python3", "library"]
+authors = [
+  "Etienne Napoleone <etienne@tomochain.com>"
+]
 
 [tool.poetry.dependencies]
 python = "^3.5"
