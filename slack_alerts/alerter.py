@@ -2,8 +2,8 @@ from typing import Dict
 
 import requests
 
-from slack_alerts.exceptions import CouldNotSendAlert
-from slack_alerts.exceptions import InvalidPayload
+from slack_alerts.exceptions import CouldNotSendAlert, InvalidPayload
+from slack_alerts.elements import attachment, attachments
 from slack_alerts.utils import merge_dicts
 
 
@@ -18,36 +18,61 @@ class Alerter:
     def __init__(self, url: str, channel: str = None, username: str = None,
                  icon_emoji: str = None, timeout: int = 1) -> None:
         self.url = url
-        self.channel = channel
-        self.username = username
-        self.icon_emoji = icon_emoji
+        self.channel = {'channel': channel}
+        self.username = {'username': username}
+        self.icon_emoji = {'icon_emoji': icon_emoji}
         self.timeout = timeout
 
     def __repr__(self):
         return ('Alerter for channel {}'
                 .format(self.channel if self.channel else '(default)'))
 
-    def critical(self, message: str, title: str = None):
+    def critical(self, message: str, title: str = None,
+                 title_link: str = None) -> None:
         """Preformated critical message."""
-        pass
+        self._send(attachments(
+                attachment(fallback='Critical: {}'.format(message),
+                           text=message, title=title, title_link=title_link,
+                           color='danger')
+        ))
 
-    def warning(self, message: str, title: str = None):
+    def warning(self, message: str, title: str = None,
+                title_link: str = None) -> None:
         """Preformated warning message."""
-        pass
+        self._send(attachments(
+                attachment(fallback='Warning: {}'.format(message),
+                           text=message, title=title, title_link=title_link,
+                           color='warning')
+        ))
 
-    def info(self, message: str, title: str = None):
+    def info(self, message: str, title: str = None,
+             title_link: str = None) -> None:
         """Preformated warning message."""
-        pass
+        self._send(attachments(
+                attachment(fallback='Info: {}'.format(message),
+                           text=message, title=title, title_link=title_link,
+                           color='#CCE5FF')
+        ))
 
-    def ok(self, message: str, title: str = None):
+    def good(self, message: str, title: str = None,
+             title_link: str = None) -> None:
         """Preformated ok message."""
-        pass
+        self._send(attachments(
+                attachment(fallback='Good: {}'.format(message),
+                           text=message, title=title, title_link=title_link,
+                           color='good')
+        ))
+
+    def custom(self, *args) -> None:
+        """Custom message with elements."""
+        self._send(attachments(*args))
 
     def _send(self, *args: Dict[str, str]) -> None:
         """Send the request to the Slack webhook."""
         try:
-            r = requests.post(self.url, json=merge_dicts(*args),
-                              timeout=self.timeout)
+            json = merge_dicts(self.channel, self.username, self.icon_emoji,
+                               *args)
+            r = requests.post(self.url, json=json, timeout=self.timeout)
         except InvalidPayload:
             raise InvalidPayload('One of the args is not a valid dictionary')
         except (requests.exceptions.RequestException,
