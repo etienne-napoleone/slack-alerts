@@ -25,7 +25,7 @@ alerter = slack_alerts.Alerter('https://your-slack.webhook/url')
 alerter.critical('something bad happened!!')
 ```
 
-### Installing
+### Installation
 
 With pip
 
@@ -48,7 +48,7 @@ pip install slack_alerts
 pipenv install slack_alerts
 ```
 
-### Run tests
+### Tests
 
 Run pytest for unit tests
 
