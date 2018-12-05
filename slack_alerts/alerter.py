@@ -18,9 +18,9 @@ class Alerter:
     def __init__(self, url: str, channel: str = None, username: str = None,
                  icon_emoji: str = None, timeout: int = 1) -> None:
         self.url = url
-        self.channel = {'channel': channel}
-        self.username = {'username': username}
-        self.icon_emoji = {'icon_emoji': icon_emoji}
+        self.channel = channel
+        self.username = username
+        self.icon_emoji = icon_emoji
         self.timeout = timeout
 
     def __repr__(self):
@@ -70,9 +70,14 @@ class Alerter:
     def _send(self, *args: Dict[str, str]) -> None:
         """Send the request to the Slack webhook."""
         try:
-            json = merge_dicts(self.channel, self.username, self.icon_emoji,
-                               *args)
-            r = requests.post(self.url, json=json, timeout=self.timeout)
+            payload = {}
+            payload.update({'channel': self.channel} if self.channel else {})
+            payload.update(
+                {'username': self.username} if self.username else {})
+            payload.update(
+                {'icon_emoji': self.icon_emoji} if self.icon_emoji else {})
+            payload = merge_dicts(payload, *args)
+            r = requests.post(self.url, json=payload, timeout=self.timeout)
         except InvalidPayload:
             raise InvalidPayload('One of the args is not a valid dictionary')
         except (requests.exceptions.RequestException,
