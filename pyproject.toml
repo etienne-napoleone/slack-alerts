@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "slack-alerts"
-version = "1.0.0-beta"
+version = "1.0.0"
 description = "Simple Slack alerting python library"
 readme = "README.md"
 license = "GPL-3.0+"
