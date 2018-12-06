@@ -5,7 +5,7 @@ URL = 'test'
 
 
 def test_version():
-    assert __version__ == '1.0.0-beta'
+    assert __version__ == '1.0.0'
 
 
 def test_instanciate_alerter():
